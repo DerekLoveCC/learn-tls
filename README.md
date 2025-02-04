@@ -1,44 +1,48 @@
-# 什么是SSL/TLS
+# TLS从入门到精通
+
+## 什么是SSL/TLS
 SSL（Secure Socket Layer，安全套接层）和 TLS（Transport Layer Security，传输层安全）是一种安全协议，它建立在Internet协议（IP）之上，用于两个应用程序之间提供保密性和数据完整性。
 
-# TLS vs SSL
+## TLS vs SSL
 - 使用PKI certificates和相关的密钥保证网络通信安全
 - 使用加密套件保证数据安全
 - 使用Hash和数字签名保证数据完整性，认证和防止数据篡改
 - 通过配置为其他应用层协议提供安全性, 如HTTPS、FTPS, SMTPS等
 
-## SSL有三个版本：SSL 1.0, SSL 2.0, SSL 3.0。
-## TLS有四个版本：TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3
+### SSL有三个版本：SSL 1.0, SSL 2.0, SSL 3.0。
+### TLS有四个版本：TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3
 目前推荐使用TLS 1.2或TLS 1.3，其中TLS 1.3是最新版本，具有更好的性能、安全性和隐私保护， 而TLS 1.2应用最广泛。SSL则不再推荐使用。
 
-## Security Protocol Downgrade Attacks
+### Security Protocol Downgrade Attacks
 在初始握手阶段，客户端和服务器协商使用的TLS/SSL协议版本，如果中间人攻击者（MITM - man in the middle）窃听了通信过程，他可以修改通信内容，将通信协议降级到SSL 3.0或更低版本，从而导致通信不安全，这种攻击称为Security Protocol Downgrade Attacks。TLS_FALLBACK_SCSV可以防止这种攻击。通常应禁用SSL和TLS 1.0，使用TLS 1.2或更高版本。
 
-## POODLE Attack
+### POODLE Attack
 TLS 1.0和TLS 1.1中存在一个漏洞，称为POODLE，它允许攻击者利用中间人攻击（MITM）将SSL 3.0或更低版本的通信内容修改为TLS 1.0或TLS 1.1的通信内容，从而导致通信不安全。TLS 1.2和TLS 1.3都没有这个漏洞。
 
-## Heartbleed Attack
+### Heartbleed Attack
 TLS 1.0和TLS 1.1中存在一个漏洞，称为Heartbleed，它允许攻击者窃听或篡改TLS连接中的数据，从而导致通信不安全。TLS 1.2和TLS 1.3都没有这个漏洞。
 
-## BEAST Attack
+### BEAST Attack
 TLS 1.1中存在一个漏洞，称为BEAST，它允许攻击者利用中间人攻击（MITM）将SSL 3.0或更低版本的通信内容修改为TLS 1.1的通信内容，从而导致通信不安全。TLS 1.2和TLS 1.3都没有这个漏洞。
 
-## CRIME Attack
+### CRIME Attack
 TLS 1.2和TLS 1.3中存在一个漏洞，称为CRIME，它允许攻击者利用中间人攻击（MITM）将TLS 1.2或TLS 1.3的通信内容修改为不安全的形式，从而导致通信不安全。
 
-## DROWN Attack
+### DROWN Attack
 TLS 1.2和TLS 1.3中存在一个漏洞，称为DROWN，它允许攻击者利用中间人攻击（MITM）将TLS 1.2或TLS 1.3的通信内容修改为不安全的形式，从而导致通信不安全。
 
-## 总结
+### 总结
 TLS协议是SSL协议的升级版本，它在SSL的基础上添加了更高级的安全功能，如加密套件、数字签名、身份验证等。TLS协议的版本从SSL 3.0升级到TLS 1.0，再升级到TLS 1.1，最后升级到TLS 1.2和TLS 1.3。TLS协议的版本越高，安全性越高，但性能也会下降。因此，在选择TLS协议版本时，应根据应用场景、硬件性能、网络环境等因素进行权衡。
 
-# 数字证书
+## TLS用到的工具
+1. 数字证书
 - Intended Purposes
+2. 加密套件
 
 即预期用途或扩展密钥使用（EKU））是指证书所标识的公钥预期被用于哪些特定目的。EKU扩展字段用于指定证书的公钥可以用于哪些类型的加密操作，例如服务器身份验证、客户端身份验证、代码签名、电子邮件保护等。通过明确证书的预期用途，可以限制证书的使用范围，从而提高安全性，防止证书被误用或滥用。
 
 
-# PKI（Public Key Infrastructure，公钥基础设施）
+## PKI（Public Key Infrastructure，公钥基础设施）
 PKI（Public Key Infrastructure，公钥基础设施）是一种管理数字证书的系统，它包括证书颁发机构（CA）、证书吊销机构（CA）、证书注册机构（RA）、证书存储库、证书利用系统。PKI的主要功能是为用户和组织提供数字证书，并验证证书的有效性、真实性、完整性。
 
 
