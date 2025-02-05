@@ -24,6 +24,19 @@
 
 ## 生成ECC密钥
 - openssl ecparam -name prime256v1 -genkey -out ecc-key.pem # Generate private key
+- openssl ecparam -name prime256v1 -genkey -noout -out ecc-key.pem # Generate private key, without EC parameters appended to output
+
+## 查看密钥信息
+- openssl ec -in ecc-key.pem -text # View private key details
+- openssl ec -in ecc-key.pem -text -noout # View private key details, without private key appended to output
+
+## 提取公钥
+- openssl ec -in ecc-key.pem -pubout # Generate public key
+- openssl ec -in ecc-key.pem -pubout -out ecc-public-key.pem # Generate public key并输出到ecc-public-key.pem文件中
+
+## 加解密测试
+
+
 
 # Generate CSR (Certificate Signing Request)
 - openssl req -new -key rsa-key.pem -out csr.pem # Generate CSR (Certificate Signing Request)
