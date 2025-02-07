@@ -10,4 +10,5 @@
 - https://badssl.com/
 - https://www.sslchecker.com/sslchecker
 - https://www.ssllabs.com/ssltest/
+- https://certlogik.com/decoder/
 
