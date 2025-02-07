@@ -6,6 +6,7 @@
 ## 查看密钥信息
 - openssl rsa -in rsa-key.pem -text # View private key details
 - openssl rsa -in rsa-key.pem -text -noout # View private key details, without private key appended to output
+
 ### 输出解析
 ![](./image/rsa_key的组成.png)
 
@@ -36,6 +37,9 @@
 
 ## 加解密测试
 
+# Certificate
+## 生成证书
+openssl req -x509 -sha256 -days 365 -key ecc-key.pem -out ecc-cert.pem -subj "/C=US/ST=CA/L=San Francisco/O=My Company/OU=My Department/CN=www.example.com" # Generate Certificate
 
 
 # Generate CSR (Certificate Signing Request)
