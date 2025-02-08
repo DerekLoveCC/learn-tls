@@ -41,7 +41,7 @@
 ## 生成证书
 - openssl req -x509 -sha256 -days 365 -key ecc-key.pem -out ecc-ca-cert.pem -subj "/C=US/ST=CA/L=San Francisco/O=My Company/OU=My Department/CN=www.example.com" #生成自签名的证书 
 - openssl req -x509 -days 365 -key private-key.pem -config certificate.conf -out cert-from-config.pem #使用配置文件certificate.conf生成自签名的证书
-- openssl req -x509 -days 365 -key private-key.pem -config certificate-noprompt.conf -out cert-from-config-noprompt.pem -extensions v3_extensions #使用配置文件certificate.conf生成自签名的证书,并包含v3_extensions扩展中的信息
+- openssl req -x509 -days 365 -key ca-rsa-key.pem -config certificate-no-prompt.conf -out ca-root-rsa-cert.pem -extensions v3_extensions #使用配置文件certificate-noprompt.conf生成自签名的证书,并包含v3_extensions扩展中的信息
 ## 查看证书信息
 openssl x509 -in ecc-cert.pem -text -noout
 
@@ -58,3 +58,5 @@ openssl x509 -in ecc-cert.pem -text -noout
 5. install certificate to server
 - openssl req -new -key rsa-key.pem -out csr.pem # Generate CSR (Certificate Signing Request)
 - openssl x509 -req -days 365 -in csr.pem -signkey rsa-key.pem -out certificate.pem # Generate Certificate
+6. verify certificate
+- openssl verify -CAfile ca-root-rsa-cert.pem  intermediary-ca-ecc-cert.pem 
