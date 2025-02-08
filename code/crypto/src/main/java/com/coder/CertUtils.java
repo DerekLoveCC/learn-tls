@@ -106,6 +106,7 @@ public class CertUtils {
 
         X509Certificate intermediateCertificate = generateIntermediateCertificate(rootCACert, rootCAKeyPair, csr);
         System.out.println("intermediate certificate: " + intermediateCertificate.toString());
+        System.out.println("intermediate transformCertificate: " + transformCertificate(intermediateCertificate));
         intermediateCertificate.verify(rootCACert.getPublicKey());
     }
 
