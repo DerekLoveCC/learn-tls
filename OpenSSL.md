@@ -48,12 +48,13 @@ openssl x509 -in ecc-cert.pem -text -noout
 ## 请求证书
 由于CA签发证书需要使用CA的私钥，所以需要申请者把所有想要在证书中包含的信息发给CA，CA会根据这些信息数据创建证书并签名。此时就需要CSR即Certificate Signing Request
 1. generate private key and public key
-- openssl ecparam -name prime256v1 -genkey -noout -out ecc-intermediary-ca-key.pem
+- openssl ecparam -name prime256v1 -genkey -noout -out intermediary-ca-ecc-key.pem
 2. generate CSR
-- openssl req -new -key ecc-intermediary-ca-key.pem -out ecc-intermediary-ca-csr.pem -config certificate-csr.conf
-- openssl req -in .\ecc-intermediary-ca-csr.pem -text #查看CSR信息
+- openssl req -new -key intermediary-ca-ecc-key.pem -out intermediary-ca-ecc-csr.pem -config certificate-csr.conf
+- openssl req -in .\intermediary-ca-ecc-csr.pem -text -noout #查看CSR信息
 3. send CSR to CA
 4. CA sign CSR and send back certificate
+- openssl x509 -req -CA ca-rsa-root-cert.pem -CAkey ca-rsa-key.pem -in intermediary-ca-ecc-csr.pem -out intermediary-ca-ecc-cert.pem -days 365 
 5. install certificate to server
 - openssl req -new -key rsa-key.pem -out csr.pem # Generate CSR (Certificate Signing Request)
 - openssl x509 -req -days 365 -in csr.pem -signkey rsa-key.pem -out certificate.pem # Generate Certificate
