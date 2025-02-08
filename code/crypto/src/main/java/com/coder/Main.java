@@ -10,6 +10,6 @@ public class Main {
 
         //KeyUtils.readPEM();
 
-        CertUtils.generateCertificate();
+        CertUtils.intermidiateCertificate();
     }
 }
